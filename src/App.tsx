@@ -141,24 +141,17 @@ function App() {
     </svg>
   );
 
-  // Modern Performance Arrow Icon - sleek and minimal
-  const PerformanceArrowIcon = ({ className }: { className?: string }) => (
+  // Bold Growth Arrow Icon - solid, modern, and dynamic
+  const BoldGrowthArrowIcon = ({ className }: { className?: string }) => (
     <svg 
       viewBox="0 0 24 24" 
       className={className}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      fill="currentColor"
     >
-      {/* Sleek upward arrow with performance lines */}
-      <path d="M7 17L17 7" />
-      <path d="M17 7H11" />
-      <path d="M17 7V13" />
-      {/* Performance indicator lines */}
-      <path d="M3 12L7 8" strokeWidth="1.5" opacity="0.6" />
-      <path d="M3 16L5 14" strokeWidth="1.5" opacity="0.4" />
+      {/* Bold upward diagonal arrow */}
+      <path d="M6 18L18 6M18 6H10M18 6V14" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+      {/* Arrow head - solid and bold */}
+      <path d="M18 6L15 9L18 12L21 9Z"/>
     </svg>
   );
 
@@ -628,8 +621,8 @@ function App() {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-gray-900 to-black"></div>
         
         <div className="relative z-10 max-w-4xl mx-auto text-center px-6">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent flex items-center justify-center gap-3">
-            <PerformanceArrowIcon className="w-7 h-7 text-white flex-shrink-0" />
+          <h2 className="text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent flex items-center justify-center gap-2">
+            <BoldGrowthArrowIcon className="w-14 h-14 flex-shrink-0" style={{ color: '#FF3B3B' }} />
             Get a Free Growth Plan — Delivered in 24 Hours
           </h2>
           <p className="text-xl text-gray-300 mb-4 leading-relaxed">
@@ -637,9 +630,6 @@ function App() {
           </p>
           <p className="text-lg text-gray-300 mb-8 leading-relaxed">
             Share a few quick details about your business, and I'll send you a personalized strategy plan — free, actionable, and tailored to your needs.
-          </p>
-          <p className="text-lg text-gray-400 mb-12">
-            Delivered to your inbox within 24 hours.
           </p>
           
           <button 
@@ -654,6 +644,10 @@ function App() {
               <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
             </span>
           </button>
+          
+          <p className="text-lg text-gray-400 mt-6">
+            Delivered to your inbox within 24 hours.
+          </p>
         </div>
       </section>
 

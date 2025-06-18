@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Instagram, Phone, ArrowRight, Target, TrendingUp, Zap, ChevronDown, User, Building, Mail, MessageSquare, Globe, ShoppingBag, Users, AlertCircle, Trophy, FileText, TrendingUp as TrendingUpRight } from 'lucide-react';
+import TestimonialSection from './components/TestimonialSection';
 
 function App() {
   const [scrollY, setScrollY] = useState(0);
@@ -597,24 +598,8 @@ function App() {
         </div>
       </section>
 
-      {/* Testimonials Placeholder Section */}
-      <section className="py-24 relative">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800"></div>
-        
-        <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">
-            Testimonials & Real Client Wins
-          </h2>
-          <p className="text-xl text-gray-300 mb-12">
-            Coming Soon
-          </p>
-          <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-12 rounded-3xl border border-gray-700">
-            <p className="text-gray-400 text-lg">
-              Success stories and client testimonials will be featured here soon.
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* Testimonials Section - Now using Sanity CMS */}
+      <TestimonialSection />
 
       {/* Final CTA Section */}
       <section className="py-24 relative">

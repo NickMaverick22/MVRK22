@@ -141,6 +141,27 @@ function App() {
     </svg>
   );
 
+  // Modern Performance Arrow Icon - sleek and minimal
+  const PerformanceArrowIcon = ({ className }: { className?: string }) => (
+    <svg 
+      viewBox="0 0 24 24" 
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      {/* Sleek upward arrow with performance lines */}
+      <path d="M7 17L17 7" />
+      <path d="M17 7H11" />
+      <path d="M17 7V13" />
+      {/* Performance indicator lines */}
+      <path d="M3 12L7 8" strokeWidth="1.5" opacity="0.6" />
+      <path d="M3 16L5 14" strokeWidth="1.5" opacity="0.4" />
+    </svg>
+  );
+
   if (showForm) {
     return (
       <div className="bg-black text-white min-h-screen">
@@ -607,8 +628,8 @@ function App() {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-gray-900 to-black"></div>
         
         <div className="relative z-10 max-w-4xl mx-auto text-center px-6">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent flex items-center justify-center gap-4">
-            <GrowthChartIcon className="w-8 h-8 text-red-500 flex-shrink-0" />
+          <h2 className="text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent flex items-center justify-center gap-3">
+            <PerformanceArrowIcon className="w-7 h-7 text-white flex-shrink-0" />
             Get a Free Growth Plan — Delivered in 24 Hours
           </h2>
           <p className="text-xl text-gray-300 mb-4 leading-relaxed">

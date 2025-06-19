@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Instagram, Phone, ArrowRight, Target, TrendingUp, Zap, ChevronDown, User, Building, Mail, MessageSquare, Globe, ShoppingBag, Users, AlertCircle, Trophy, FileText, TrendingUp as TrendingUpRight } from 'lucide-react';
-import ServicesSection from './components/ServicesSection';
 
 function App() {
   const [scrollY, setScrollY] = useState(0);
@@ -126,17 +125,40 @@ function App() {
     setShowForm(false);
   };
 
-  // Modern Performance Arrow Icon - sleek and dynamic
-  const ModernPerformanceArrowIcon = ({ className }: { className?: string }) => (
+  // Custom Growth Chart Icon Component
+  const GrowthChartIcon = ({ className }: { className?: string }) => (
     <svg 
-      viewBox="0 0 24 24" 
+      viewBox="0 0 100 100" 
       className={className}
       fill="currentColor"
     >
-      {/* Dynamic upward arrow with performance aesthetic */}
-      <path d="M12 2L22 12L18 12L18 22L6 22L6 12L2 12L12 2Z" />
-      {/* Performance accent lines */}
-      <path d="M8 8L12 4L16 8" stroke="white" strokeWidth="1" fill="none" opacity="0.6"/>
+      <path d="M15 85 L15 65 L25 65 L25 85 Z" />
+      <path d="M35 85 L35 50 L45 50 L45 85 Z" />
+      <path d="M55 85 L55 35 L65 35 L65 85 Z" />
+      <path d="M75 85 L75 20 L85 20 L85 85 Z" />
+      <path d="M20 60 L40 45 L60 30 L75 20 L85 15" stroke="currentColor" strokeWidth="3" fill="none" />
+      <path d="M75 25 L85 15 L85 25 Z" />
+    </svg>
+  );
+
+  // Modern Performance Arrow Icon - sleek and minimal
+  const PerformanceArrowIcon = ({ className }: { className?: string }) => (
+    <svg 
+      viewBox="0 0 24 24" 
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      {/* Sleek upward arrow with performance lines */}
+      <path d="M7 17L17 7" />
+      <path d="M17 7H11" />
+      <path d="M17 7V13" />
+      {/* Performance indicator lines */}
+      <path d="M3 12L7 8" strokeWidth="1.5" opacity="0.6" />
+      <path d="M3 16L5 14" strokeWidth="1.5" opacity="0.4" />
     </svg>
   );
 
@@ -445,7 +467,7 @@ function App() {
                     {!isSubmitting && <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />}
                   </span>
                 </button>
-                <p className="text-gray-400 text-sm mt-6">
+                <p className="text-gray-400 text-sm mt-4">
                   You'll receive your personalized plan within 24 hours
                 </p>
               </div>
@@ -513,8 +535,74 @@ function App() {
         </div>
       </section>
 
-      {/* Services Section - Now using Sanity CMS */}
-      <ServicesSection />
+      {/* Services Section */}
+      <section className="py-24 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900 to-black"></div>
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">
+              What I Offer
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              No buzzwords. Just tailored solutions to help you attract the right audience, close more deals, and unlock new levels of growth.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Service 1 - Marketing Strategy */}
+            <div className="group bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700 hover:border-gray-600 transition-all duration-500 hover:transform hover:scale-105">
+              <div className="bg-gradient-to-br from-red-600 to-red-700 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:shadow-lg group-hover:shadow-red-500/25 transition-all duration-300">
+                <Target className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold mb-4 text-white">Marketing Strategy</h3>
+              <ul className="text-gray-300 leading-relaxed space-y-3">
+                <li>• Focus on strategy and positioning</li>
+                <li>• Define the Marketing ICP (the audience your brand content should attract)</li>
+                <li>• Content direction + messaging clarity</li>
+                <li>• Manage all production: photoshoots, graphic design, video editing</li>
+                <li>• Design and launch complete marketing campaigns</li>
+              </ul>
+              <p className="text-sm text-gray-400 mt-4 italic">
+                Marketing ICP = people to attract and nurture before the sale
+              </p>
+            </div>
+
+            {/* Service 2 - Sales Strategy */}
+            <div className="group bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700 hover:border-gray-600 transition-all duration-500 hover:transform hover:scale-105">
+              <div className="bg-gradient-to-br from-red-600 to-red-700 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:shadow-lg group-hover:shadow-red-500/25 transition-all duration-300">
+                <TrendingUp className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold mb-4 text-white">Sales Strategy</h3>
+              <ul className="text-gray-300 leading-relaxed space-y-3">
+                <li>• Define the Sales ICP (ready-to-buy segment)</li>
+                <li>• Build full CRM & sales systems using tools like HubSpot</li>
+                <li>• Set up automated chatbots to increase closing chances</li>
+                <li>• Design sales campaigns and outreach sequences</li>
+                <li>• Optimize each touchpoint to turn leads into revenue</li>
+              </ul>
+              <p className="text-sm text-gray-400 mt-4 italic">
+                Sales ICP = qualified buyers actively making decisions
+              </p>
+            </div>
+
+            {/* Service 3 - Growth Acceleration */}
+            <div className="group bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700 hover:border-gray-600 transition-all duration-500 hover:transform hover:scale-105">
+              <div className="bg-gradient-to-br from-red-600 to-red-700 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:shadow-lg group-hover:shadow-red-500/25 transition-all duration-300">
+                <Zap className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold mb-4 text-white">Growth Acceleration</h3>
+              <ul className="text-gray-300 leading-relaxed space-y-3">
+                <li>• Consulting-style service: 1-on-1 strategic clarity</li>
+                <li>• Identify and resolve growth bottlenecks</li>
+                <li>• Plan scale pathways and streamline decision-making</li>
+                <li>• Available as a free trial: strategic insight delivered in 24 hours</li>
+                <li>• Acts as your entry-point offer to build trust</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Testimonials Placeholder Section */}
       <section className="py-24 relative">
@@ -540,8 +628,8 @@ function App() {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-gray-900 to-black"></div>
         
         <div className="relative z-10 max-w-4xl mx-auto text-center px-6">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent flex items-center justify-center gap-2">
-            <ModernPerformanceArrowIcon className="w-14 h-14 flex-shrink-0" style={{ color: '#FF3B3B' }} />
+          <h2 className="text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent flex items-center justify-center gap-3">
+            <PerformanceArrowIcon className="w-7 h-7 text-white flex-shrink-0" />
             Get a Free Growth Plan — Delivered in 24 Hours
           </h2>
           <p className="text-xl text-gray-300 mb-4 leading-relaxed">
@@ -549,6 +637,9 @@ function App() {
           </p>
           <p className="text-lg text-gray-300 mb-8 leading-relaxed">
             Share a few quick details about your business, and I'll send you a personalized strategy plan — free, actionable, and tailored to your needs.
+          </p>
+          <p className="text-lg text-gray-400 mb-12">
+            Delivered to your inbox within 24 hours.
           </p>
           
           <button 
@@ -563,10 +654,6 @@ function App() {
               <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
             </span>
           </button>
-          
-          <p className="text-lg text-gray-400 mt-6">
-            Delivered to your inbox within 24 hours.
-          </p>
         </div>
       </section>
 

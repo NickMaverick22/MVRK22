@@ -4,6 +4,7 @@ import { Instagram, Phone, ArrowRight, Target, TrendingUp, Zap, ChevronDown, Use
 function App() {
   const [scrollY, setScrollY] = useState(0);
   const [showForm, setShowForm] = useState(false);
+  const [showTestimonialForm, setShowTestimonialForm] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -19,44 +20,58 @@ function App() {
     success: '',
     consent: false
   });
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showTestimonialForm, setShowTestimonialForm] = useState(false);
   const [testimonialFormData, setTestimonialFormData] = useState({
+    name: '',
+    role: '',
+    company: '',
     email: '',
     testimonial: ''
   });
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const testimonials = [
     {
       name: "Amina Khalil",
       role: "Marketing Strategist",
       company: "Bold Agency",
-      quote: "Working with MVRK22 helped me scale faster than I imagined. The clarity was unmatched."
+      quote: "Working with MVRK helped me scale faster than I imagined. The strategic clarity and execution framework transformed how we approach growth. Our revenue increased by 240% in just 6 months.",
+      avatar: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
     },
     {
-      name: "Nassim B.",
+      name: "Nassim Benali",
       role: "Startup Founder",
       company: "Zentech Labs",
-      quote: "They unlocked a level of strategic thinking we never knew we needed."
+      quote: "They unlocked a level of strategic thinking we never knew we needed. The sales system implementation was flawless, and the results speak for themselves - we went from struggling to close deals to having a predictable revenue stream.",
+      avatar: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
     },
     {
       name: "Lina Meftahi",
       role: "Product Manager",
       company: "NorthEdge",
-      quote: "MVRK22 helped us fix our sales process and grow with confidence. It just worked."
+      quote: "MVRK helped us fix our sales process and grow with confidence. The marketing strategy completely repositioned our brand in the market. We now attract high-quality leads consistently and our conversion rates have tripled.",
+      avatar: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
     },
     {
       name: "Omar Trabelsi",
       role: "E-commerce Director",
       company: "Digital Souk",
-      quote: "The marketing strategy transformed our brand positioning. Revenue increased by 180% in 4 months."
+      quote: "The marketing strategy transformed our brand positioning completely. We went from being just another e-commerce store to becoming the go-to platform in our niche. Revenue increased by 180% in 4 months.",
+      avatar: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
     },
     {
       name: "Sarah Ben Ali",
       role: "CEO",
       company: "InnovateTN",
-      quote: "MVRK22's sales system implementation was a game-changer. We finally have predictable growth."
+      quote: "MVRK's sales system implementation was a game-changer for our startup. We finally have predictable growth and a clear path to scale. The team's expertise in both strategy and execution is unmatched.",
+      avatar: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
+    },
+    {
+      name: "Karim Hadj",
+      role: "Business Development",
+      company: "TechFlow Solutions",
+      quote: "The growth acceleration program exceeded all expectations. Within 3 months, we had clarity on our market position, optimized sales processes, and a marketing strategy that actually converts. Highly recommended.",
+      avatar: "https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
     }
   ];
 
@@ -68,10 +83,10 @@ function App() {
 
   // Scroll to top when showing form
   useEffect(() => {
-    if (showForm) {
+    if (showForm || showTestimonialForm) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-  }, [showForm]);
+  }, [showForm, showTestimonialForm]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
@@ -95,9 +110,9 @@ function App() {
     e.preventDefault();
     console.log('Testimonial Form Data:', testimonialFormData);
     // Reset form
-    setTestimonialFormData({ email: '', testimonial: '' });
+    setTestimonialFormData({ name: '', role: '', company: '', email: '', testimonial: '' });
+    alert('Thank you for sharing your experience! We\'ll review your testimonial and get back to you soon.');
     setShowTestimonialForm(false);
-    alert('Thank you for sharing your experience!');
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -216,6 +231,142 @@ function App() {
       <path d="M3 16L5 14" strokeWidth="1.5" opacity="0.4" />
     </svg>
   );
+
+  // Testimonial Form Page
+  if (showTestimonialForm) {
+    return (
+      <div className="bg-black text-white min-h-screen">
+        <div className="max-w-4xl mx-auto px-6 py-12">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <img 
+              src="/582b3ba5-44a7-495b-99db-d934013589cf-removebg-preview.png" 
+              alt="MVRK Logo" 
+              className="h-16 mx-auto mb-8 filter drop-shadow-2xl"
+            />
+            <button 
+              onClick={() => setShowTestimonialForm(false)}
+              className="text-gray-400 hover:text-white transition-colors duration-300 mb-8"
+            >
+              ← Back to Home
+            </button>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">
+              Share Your Experience
+            </h1>
+            <p className="text-xl text-gray-300">
+              Help others discover the impact of working with MVRK
+            </p>
+          </div>
+
+          {/* Testimonial Form */}
+          <form onSubmit={handleTestimonialSubmit} className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 md:p-12 rounded-3xl border border-gray-700">
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Name */}
+              <div>
+                <label className="flex items-center gap-2 text-sm font-medium text-gray-300 mb-3">
+                  <User className="w-4 h-4" />
+                  Full Name *
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  value={testimonialFormData.name}
+                  onChange={handleTestimonialInputChange}
+                  required
+                  className="w-full bg-gray-700 border border-gray-600 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors duration-300"
+                  placeholder="Your full name"
+                />
+              </div>
+
+              {/* Role */}
+              <div>
+                <label className="flex items-center gap-2 text-sm font-medium text-gray-300 mb-3">
+                  <Target className="w-4 h-4" />
+                  Role/Position *
+                </label>
+                <input
+                  type="text"
+                  name="role"
+                  value={testimonialFormData.role}
+                  onChange={handleTestimonialInputChange}
+                  required
+                  className="w-full bg-gray-700 border border-gray-600 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors duration-300"
+                  placeholder="Your role or position"
+                />
+              </div>
+
+              {/* Company */}
+              <div>
+                <label className="flex items-center gap-2 text-sm font-medium text-gray-300 mb-3">
+                  <Building className="w-4 h-4" />
+                  Company *
+                </label>
+                <input
+                  type="text"
+                  name="company"
+                  value={testimonialFormData.company}
+                  onChange={handleTestimonialInputChange}
+                  required
+                  className="w-full bg-gray-700 border border-gray-600 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors duration-300"
+                  placeholder="Your company name"
+                />
+              </div>
+
+              {/* Email */}
+              <div>
+                <label className="flex items-center gap-2 text-sm font-medium text-gray-300 mb-3">
+                  <Mail className="w-4 h-4" />
+                  Email *
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={testimonialFormData.email}
+                  onChange={handleTestimonialInputChange}
+                  required
+                  className="w-full bg-gray-700 border border-gray-600 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors duration-300"
+                  placeholder="your@email.com"
+                />
+              </div>
+
+              {/* Testimonial */}
+              <div className="md:col-span-2">
+                <label className="flex items-center gap-2 text-sm font-medium text-gray-300 mb-3">
+                  <MessageSquare className="w-4 h-4" />
+                  Your Testimonial *
+                </label>
+                <textarea
+                  name="testimonial"
+                  value={testimonialFormData.testimonial}
+                  onChange={handleTestimonialInputChange}
+                  required
+                  rows={6}
+                  className="w-full bg-gray-700 border border-gray-600 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors duration-300 resize-none"
+                  placeholder="Share your experience working with MVRK. What results did you achieve? How did it impact your business?"
+                />
+              </div>
+            </div>
+
+            {/* Submit Button */}
+            <div className="mt-12 text-center">
+              <button
+                type="submit"
+                className="group bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white px-12 py-4 rounded-full text-xl font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-red-500/25"
+              >
+                <span className="flex items-center gap-3">
+                  Submit Testimonial
+                  <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
+                </span>
+              </button>
+              <p className="text-gray-400 text-sm mt-4">
+                We'll review your testimonial and may feature it on our website
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    );
+  }
 
   if (showForm) {
     return (
@@ -663,7 +814,7 @@ function App() {
       <section className="py-24 relative">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800"></div>
         
-        <div className="relative z-10 max-w-6xl mx-auto px-6">
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">
               What Our Clients Say
@@ -673,154 +824,45 @@ function App() {
             </p>
           </div>
 
-          {/* Testimonials Carousel */}
-          <div className="relative overflow-hidden mb-12">
-            <div 
-              className="flex gap-6 animate-scroll hover:pause-animation"
-              style={{
-                width: `${testimonials.length * 2 * 100}%`,
-                animation: 'scroll 30s linear infinite'
-              }}
-            >
-              {/* First set of testimonials */}
-              {testimonials.map((testimonial, index) => (
-                <div
-                  key={`first-${index}`}
-                  className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700 flex-shrink-0 w-full md:w-1/2 lg:w-1/3"
-                >
-                  <div className="mb-6">
-                    <div className="flex text-yellow-400 mb-4">
-                      {[...Array(5)].map((_, i) => (
-                        <span key={i} className="text-xl">★</span>
-                      ))}
-                    </div>
-                    <p className="text-gray-300 text-lg leading-relaxed mb-6">
-                      "{testimonial.quote}"
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-red-600 to-red-700 rounded-full flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">
-                        {testimonial.name.charAt(0)}
-                      </span>
-                    </div>
-                    <div>
-                      <h4 className="text-white font-semibold">{testimonial.name}</h4>
-                      <p className="text-gray-400 text-sm">{testimonial.role}</p>
-                      <p className="text-gray-500 text-sm">{testimonial.company}</p>
-                    </div>
+          {/* Testimonials Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            {testimonials.map((testimonial, index) => (
+              <div
+                key={index}
+                className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700 hover:border-gray-600 transition-all duration-300 hover:transform hover:scale-105"
+              >
+                <div className="mb-6">
+                  <p className="text-gray-300 text-lg leading-relaxed mb-6">
+                    "{testimonial.quote}"
+                  </p>
+                </div>
+                <div className="flex items-center gap-4">
+                  <img
+                    src={testimonial.avatar}
+                    alt={testimonial.name}
+                    className="w-12 h-12 rounded-full object-cover"
+                  />
+                  <div>
+                    <h4 className="text-white font-semibold">{testimonial.name}</h4>
+                    <p className="text-gray-400 text-sm">{testimonial.role}</p>
+                    <p className="text-gray-500 text-sm">{testimonial.company}</p>
                   </div>
                 </div>
-              ))}
-              {/* Duplicate set for seamless loop */}
-              {testimonials.map((testimonial, index) => (
-                <div
-                  key={`second-${index}`}
-                  className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700 flex-shrink-0 w-full md:w-1/2 lg:w-1/3"
-                >
-                  <div className="mb-6">
-                    <div className="flex text-yellow-400 mb-4">
-                      {[...Array(5)].map((_, i) => (
-                        <span key={i} className="text-xl">★</span>
-                      ))}
-                    </div>
-                    <p className="text-gray-300 text-lg leading-relaxed mb-6">
-                      "{testimonial.quote}"
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-red-600 to-red-700 rounded-full flex items-center justify-center">
-                      <span className="text-white font-bold text-lg">
-                        {testimonial.name.charAt(0)}
-                      </span>
-                    </div>
-                    <div>
-                      <h4 className="text-white font-semibold">{testimonial.name}</h4>
-                      <p className="text-gray-400 text-sm">{testimonial.role}</p>
-                      <p className="text-gray-500 text-sm">{testimonial.company}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
 
           {/* Share Your Experience CTA */}
           <div className="text-center">
-            {!showTestimonialForm ? (
-              <button
-                onClick={() => setShowTestimonialForm(true)}
-                className="group bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-red-500/25"
-              >
-                <span className="flex items-center gap-3">
-                  Share Your Experience
-                  <MessageSquare className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                </span>
-              </button>
-            ) : (
-              /* Testimonial Form */
-              <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-3xl border border-gray-700 max-w-2xl mx-auto">
-                <div className="flex items-center justify-between mb-6">
-                  <h3 className="text-2xl font-bold text-white">Share Your Experience</h3>
-                  <button
-                    onClick={() => setShowTestimonialForm(false)}
-                    className="text-gray-400 hover:text-white transition-colors duration-300"
-                  >
-                    <X className="w-6 h-6" />
-                  </button>
-                </div>
-                
-                <form onSubmit={handleTestimonialSubmit} className="space-y-6">
-                  <div>
-                    <label className="flex items-center gap-2 text-sm font-medium text-gray-300 mb-3">
-                      <Mail className="w-4 h-4" />
-                      Email *
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={testimonialFormData.email}
-                      onChange={handleTestimonialInputChange}
-                      required
-                      className="w-full bg-gray-700 border border-gray-600 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors duration-300"
-                      placeholder="your@email.com"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="flex items-center gap-2 text-sm font-medium text-gray-300 mb-3">
-                      <MessageSquare className="w-4 h-4" />
-                      Your Testimonial *
-                    </label>
-                    <textarea
-                      name="testimonial"
-                      value={testimonialFormData.testimonial}
-                      onChange={handleTestimonialInputChange}
-                      required
-                      rows={4}
-                      className="w-full bg-gray-700 border border-gray-600 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors duration-300 resize-none"
-                      placeholder="Share your experience working with MVRK..."
-                    />
-                  </div>
-                  
-                  <div className="flex gap-4 justify-center">
-                    <button
-                      type="button"
-                      onClick={() => setShowTestimonialForm(false)}
-                      className="px-6 py-3 border border-gray-600 text-gray-300 rounded-full hover:border-gray-500 hover:text-white transition-colors duration-300"
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      type="submit"
-                      className="px-8 py-3 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white rounded-full font-semibold transition-all duration-300 transform hover:scale-105"
-                    >
-                      Submit Testimonial
-                    </button>
-                  </div>
-                </form>
-              </div>
-            )}
+            <button
+              onClick={() => setShowTestimonialForm(true)}
+              className="group bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-red-500/25"
+            >
+              <span className="flex items-center gap-3">
+                Share Your Experience
+                <MessageSquare className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+              </span>
+            </button>
           </div>
         </div>
       </section>
@@ -867,38 +909,6 @@ function App() {
           </p>
         </div>
       </footer>
-
-      {/* Custom CSS for animations */}
-      <style jsx>{`
-        @keyframes scroll {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-        
-        .animate-scroll {
-          animation: scroll 30s linear infinite;
-        }
-        
-        .pause-animation:hover {
-          animation-play-state: paused;
-        }
-        
-        @media (max-width: 768px) {
-          .animate-scroll {
-            animation: scroll 20s linear infinite;
-          }
-        }
-        
-        @media (max-width: 640px) {
-          .animate-scroll {
-            animation: scroll 15s linear infinite;
-          }
-        }
-      `}</style>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Instagram, Phone, ArrowRight, Target, TrendingUp, Zap, ChevronDown, User, Building, Mail, MessageSquare, Globe, ShoppingBag, Users, AlertCircle, Trophy, FileText, TrendingUp as TrendingUpRight } from 'lucide-react';
+import { Instagram, Phone, ArrowRight, Target, TrendingUp, Zap, ChevronDown, User, Building, Mail, MessageSquare, Globe, ShoppingBag, Users, AlertCircle, Trophy, FileText, TrendingUp as TrendingUpRight, X } from 'lucide-react';
 
 function App() {
   const [scrollY, setScrollY] = useState(0);
@@ -21,6 +21,44 @@ function App() {
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showTestimonialForm, setShowTestimonialForm] = useState(false);
+  const [testimonialFormData, setTestimonialFormData] = useState({
+    email: '',
+    testimonial: ''
+  });
+
+  const testimonials = [
+    {
+      name: "Amina Khalil",
+      role: "Marketing Strategist",
+      company: "Bold Agency",
+      quote: "Working with MVRK22 helped me scale faster than I imagined. The clarity was unmatched."
+    },
+    {
+      name: "Nassim B.",
+      role: "Startup Founder",
+      company: "Zentech Labs",
+      quote: "They unlocked a level of strategic thinking we never knew we needed."
+    },
+    {
+      name: "Lina Meftahi",
+      role: "Product Manager",
+      company: "NorthEdge",
+      quote: "MVRK22 helped us fix our sales process and grow with confidence. It just worked."
+    },
+    {
+      name: "Omar Trabelsi",
+      role: "E-commerce Director",
+      company: "Digital Souk",
+      quote: "The marketing strategy transformed our brand positioning. Revenue increased by 180% in 4 months."
+    },
+    {
+      name: "Sarah Ben Ali",
+      role: "CEO",
+      company: "InnovateTN",
+      quote: "MVRK22's sales system implementation was a game-changer. We finally have predictable growth."
+    }
+  ];
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -43,6 +81,23 @@ function App() {
       ...prev,
       [name]: type === 'checkbox' ? checked : value
     }));
+  };
+
+  const handleTestimonialInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setTestimonialFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleTestimonialSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Testimonial Form Data:', testimonialFormData);
+    // Reset form
+    setTestimonialFormData({ email: '', testimonial: '' });
+    setShowTestimonialForm(false);
+    alert('Thank you for sharing your experience!');
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -604,21 +659,168 @@ function App() {
         </div>
       </section>
 
-      {/* Testimonials Placeholder Section */}
+      {/* Testimonials Section */}
       <section className="py-24 relative">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800"></div>
         
-        <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">
-            Testimonials & Real Client Wins
-          </h2>
-          <p className="text-xl text-gray-300 mb-12">
-            Coming Soon
-          </p>
-          <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-12 rounded-3xl border border-gray-700">
-            <p className="text-gray-400 text-lg">
-              Success stories and client testimonials will be featured here soon.
+        <div className="relative z-10 max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">
+              What Our Clients Say
+            </h2>
+            <p className="text-xl text-gray-300 mb-12">
+              Real results from real businesses
             </p>
+          </div>
+
+          {/* Testimonials Carousel */}
+          <div className="relative overflow-hidden mb-12">
+            <div 
+              className="flex gap-6 animate-scroll hover:pause-animation"
+              style={{
+                width: `${testimonials.length * 2 * 100}%`,
+                animation: 'scroll 30s linear infinite'
+              }}
+            >
+              {/* First set of testimonials */}
+              {testimonials.map((testimonial, index) => (
+                <div
+                  key={`first-${index}`}
+                  className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700 flex-shrink-0 w-full md:w-1/2 lg:w-1/3"
+                >
+                  <div className="mb-6">
+                    <div className="flex text-yellow-400 mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <span key={i} className="text-xl">★</span>
+                      ))}
+                    </div>
+                    <p className="text-gray-300 text-lg leading-relaxed mb-6">
+                      "{testimonial.quote}"
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-red-600 to-red-700 rounded-full flex items-center justify-center">
+                      <span className="text-white font-bold text-lg">
+                        {testimonial.name.charAt(0)}
+                      </span>
+                    </div>
+                    <div>
+                      <h4 className="text-white font-semibold">{testimonial.name}</h4>
+                      <p className="text-gray-400 text-sm">{testimonial.role}</p>
+                      <p className="text-gray-500 text-sm">{testimonial.company}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+              {/* Duplicate set for seamless loop */}
+              {testimonials.map((testimonial, index) => (
+                <div
+                  key={`second-${index}`}
+                  className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700 flex-shrink-0 w-full md:w-1/2 lg:w-1/3"
+                >
+                  <div className="mb-6">
+                    <div className="flex text-yellow-400 mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <span key={i} className="text-xl">★</span>
+                      ))}
+                    </div>
+                    <p className="text-gray-300 text-lg leading-relaxed mb-6">
+                      "{testimonial.quote}"
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-red-600 to-red-700 rounded-full flex items-center justify-center">
+                      <span className="text-white font-bold text-lg">
+                        {testimonial.name.charAt(0)}
+                      </span>
+                    </div>
+                    <div>
+                      <h4 className="text-white font-semibold">{testimonial.name}</h4>
+                      <p className="text-gray-400 text-sm">{testimonial.role}</p>
+                      <p className="text-gray-500 text-sm">{testimonial.company}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Share Your Experience CTA */}
+          <div className="text-center">
+            {!showTestimonialForm ? (
+              <button
+                onClick={() => setShowTestimonialForm(true)}
+                className="group bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-red-500/25"
+              >
+                <span className="flex items-center gap-3">
+                  Share Your Experience
+                  <MessageSquare className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                </span>
+              </button>
+            ) : (
+              /* Testimonial Form */
+              <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-3xl border border-gray-700 max-w-2xl mx-auto">
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="text-2xl font-bold text-white">Share Your Experience</h3>
+                  <button
+                    onClick={() => setShowTestimonialForm(false)}
+                    className="text-gray-400 hover:text-white transition-colors duration-300"
+                  >
+                    <X className="w-6 h-6" />
+                  </button>
+                </div>
+                
+                <form onSubmit={handleTestimonialSubmit} className="space-y-6">
+                  <div>
+                    <label className="flex items-center gap-2 text-sm font-medium text-gray-300 mb-3">
+                      <Mail className="w-4 h-4" />
+                      Email *
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={testimonialFormData.email}
+                      onChange={handleTestimonialInputChange}
+                      required
+                      className="w-full bg-gray-700 border border-gray-600 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors duration-300"
+                      placeholder="your@email.com"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="flex items-center gap-2 text-sm font-medium text-gray-300 mb-3">
+                      <MessageSquare className="w-4 h-4" />
+                      Your Testimonial *
+                    </label>
+                    <textarea
+                      name="testimonial"
+                      value={testimonialFormData.testimonial}
+                      onChange={handleTestimonialInputChange}
+                      required
+                      rows={4}
+                      className="w-full bg-gray-700 border border-gray-600 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors duration-300 resize-none"
+                      placeholder="Share your experience working with MVRK..."
+                    />
+                  </div>
+                  
+                  <div className="flex gap-4 justify-center">
+                    <button
+                      type="button"
+                      onClick={() => setShowTestimonialForm(false)}
+                      className="px-6 py-3 border border-gray-600 text-gray-300 rounded-full hover:border-gray-500 hover:text-white transition-colors duration-300"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      className="px-8 py-3 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white rounded-full font-semibold transition-all duration-300 transform hover:scale-105"
+                    >
+                      Submit Testimonial
+                    </button>
+                  </div>
+                </form>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -665,6 +867,38 @@ function App() {
           </p>
         </div>
       </footer>
+
+      {/* Custom CSS for animations */}
+      <style jsx>{`
+        @keyframes scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        
+        .animate-scroll {
+          animation: scroll 30s linear infinite;
+        }
+        
+        .pause-animation:hover {
+          animation-play-state: paused;
+        }
+        
+        @media (max-width: 768px) {
+          .animate-scroll {
+            animation: scroll 20s linear infinite;
+          }
+        }
+        
+        @media (max-width: 640px) {
+          .animate-scroll {
+            animation: scroll 15s linear infinite;
+          }
+        }
+      `}</style>
     </div>
   );
 }

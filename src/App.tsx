@@ -75,6 +75,9 @@ function App() {
     }
   ];
 
+  // Duplicate testimonials for seamless loop
+  const duplicatedTestimonials = [...testimonials, ...testimonials];
+
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll);
@@ -824,32 +827,41 @@ function App() {
             </p>
           </div>
 
-          {/* Testimonials Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {testimonials.map((testimonial, index) => (
-              <div
-                key={index}
-                className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700 hover:border-gray-600 transition-all duration-300 hover:transform hover:scale-105"
-              >
-                <div className="mb-6">
-                  <p className="text-gray-300 text-lg leading-relaxed mb-6">
-                    "{testimonial.quote}"
-                  </p>
-                </div>
-                <div className="flex items-center gap-4">
-                  <img
-                    src={testimonial.avatar}
-                    alt={testimonial.name}
-                    className="w-12 h-12 rounded-full object-cover"
-                  />
-                  <div>
-                    <h4 className="text-white font-semibold">{testimonial.name}</h4>
-                    <p className="text-gray-400 text-sm">{testimonial.role}</p>
-                    <p className="text-gray-500 text-sm">{testimonial.company}</p>
+          {/* Testimonials Carousel */}
+          <div className="relative overflow-hidden mb-16">
+            {/* Gradient overlays for smooth edges */}
+            <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-gray-900 via-gray-900 to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-gray-900 via-gray-900 to-transparent z-10 pointer-events-none"></div>
+            
+            {/* Scrolling container */}
+            <div className="flex animate-scroll hover:pause-animation">
+              {duplicatedTestimonials.map((testimonial, index) => (
+                <div
+                  key={index}
+                  className="flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 px-4"
+                >
+                  <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700 hover:border-gray-600 transition-all duration-300 hover:transform hover:scale-105 h-full">
+                    <div className="mb-6">
+                      <p className="text-gray-300 text-lg leading-relaxed mb-6">
+                        "{testimonial.quote}"
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <img
+                        src={testimonial.avatar}
+                        alt={testimonial.name}
+                        className="w-12 h-12 rounded-full object-cover"
+                      />
+                      <div>
+                        <h4 className="text-white font-semibold">{testimonial.name}</h4>
+                        <p className="text-gray-400 text-sm">{testimonial.role}</p>
+                        <p className="text-gray-500 text-sm">{testimonial.company}</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
           {/* Share Your Experience CTA */}

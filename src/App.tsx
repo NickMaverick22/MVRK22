@@ -116,15 +116,14 @@ function App() {
     setIsTestimonialSubmitting(true);
 
     try {
-      // Map testimonial form data to HubSpot fields
+      // Map testimonial form data to HubSpot fields based on the screenshot
       const hubspotData = {
         fields: [
-          { name: "firstname", value: testimonialFormData.name.split(' ')[0] || testimonialFormData.name },
-          { name: "lastname", value: testimonialFormData.name.split(' ').slice(1).join(' ') || '' },
+          { name: "full_name", value: testimonialFormData.name },
+          { name: "company_name", value: testimonialFormData.company },
+          { name: "job_title", value: testimonialFormData.role },
           { name: "email", value: testimonialFormData.email },
-          { name: "jobtitle", value: testimonialFormData.role },
-          { name: "company", value: testimonialFormData.company },
-          { name: "message", value: testimonialFormData.testimonial }
+          { name: "testimonial", value: testimonialFormData.testimonial }
         ]
       };
 
@@ -355,7 +354,7 @@ function App() {
                 <div>
                   <label className="flex items-center gap-2 text-sm font-medium text-gray-300 mb-3">
                     <Target className="w-4 h-4" />
-                    Role/Position *
+                    Job Title *
                   </label>
                   <input
                     type="text"
@@ -364,7 +363,7 @@ function App() {
                     onChange={handleTestimonialInputChange}
                     required
                     className="w-full bg-gray-700 border border-gray-600 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors duration-300"
-                    placeholder="Your role or position"
+                    placeholder="Your job title"
                   />
                 </div>
 
@@ -372,7 +371,7 @@ function App() {
                 <div>
                   <label className="flex items-center gap-2 text-sm font-medium text-gray-300 mb-3">
                     <Building className="w-4 h-4" />
-                    Company *
+                    Company Name *
                   </label>
                   <input
                     type="text"
@@ -406,7 +405,7 @@ function App() {
                 <div className="md:col-span-2">
                   <label className="flex items-center gap-2 text-sm font-medium text-gray-300 mb-3">
                     <MessageSquare className="w-4 h-4" />
-                    Your Testimonial *
+                    Testimonial *
                   </label>
                   <textarea
                     name="testimonial"

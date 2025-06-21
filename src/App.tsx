@@ -28,7 +28,9 @@ function App() {
     testimonial: ''
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [testimonialSubmitted, setTestimonialSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isTestimonialSubmitting, setIsTestimonialSubmitting] = useState(false);
 
   const testimonials = [
     {
@@ -109,13 +111,44 @@ function App() {
     }));
   };
 
-  const handleTestimonialSubmit = (e: React.FormEvent) => {
+  const handleTestimonialSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Testimonial Form Data:', testimonialFormData);
-    // Reset form
-    setTestimonialFormData({ name: '', role: '', company: '', email: '', testimonial: '' });
-    alert('Thank you for sharing your experience! We\'ll review your testimonial and get back to you soon.');
-    setShowTestimonialForm(false);
+    setIsTestimonialSubmitting(true);
+
+    try {
+      // Map testimonial form data to HubSpot fields
+      const hubspotData = {
+        fields: [
+          { name: "firstname", value: testimonialFormData.name.split(' ')[0] || testimonialFormData.name },
+          { name: "lastname", value: testimonialFormData.name.split(' ').slice(1).join(' ') || '' },
+          { name: "email", value: testimonialFormData.email },
+          { name: "jobtitle", value: testimonialFormData.role },
+          { name: "company", value: testimonialFormData.company },
+          { name: "message", value: testimonialFormData.testimonial }
+        ]
+      };
+
+      const response = await fetch('https://api.hsforms.com/submissions/v3/integration/submit/146366517/9c2354fe-e676-47a5-a765-ff4e9cfaf8b5', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(hubspotData)
+      });
+
+      if (response.ok) {
+        setTestimonialSubmitted(true);
+        // Clear form
+        setTestimonialFormData({ name: '', role: '', company: '', email: '', testimonial: '' });
+      } else {
+        throw new Error('Testimonial form submission failed');
+      }
+    } catch (error) {
+      console.error('Error submitting testimonial form:', error);
+      alert('There was an error submitting your testimonial. Please try again.');
+    } finally {
+      setIsTestimonialSubmitting(false);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -198,6 +231,12 @@ function App() {
     setShowForm(false);
   };
 
+  const resetTestimonialForm = () => {
+    setTestimonialFormData({ name: '', role: '', company: '', email: '', testimonial: '' });
+    setTestimonialSubmitted(false);
+    setShowTestimonialForm(false);
+  };
+
   // Custom Growth Chart Icon Component
   const GrowthChartIcon = ({ className }: { className?: string }) => (
     <svg 
@@ -261,111 +300,144 @@ function App() {
             </p>
           </div>
 
-          {/* Testimonial Form */}
-          <form onSubmit={handleTestimonialSubmit} className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 md:p-12 rounded-3xl border border-gray-700">
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* Name */}
-              <div>
-                <label className="flex items-center gap-2 text-sm font-medium text-gray-300 mb-3">
-                  <User className="w-4 h-4" />
-                  Full Name *
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  value={testimonialFormData.name}
-                  onChange={handleTestimonialInputChange}
-                  required
-                  className="w-full bg-gray-700 border border-gray-600 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors duration-300"
-                  placeholder="Your full name"
-                />
+          {testimonialSubmitted ? (
+            /* Thank You Message */
+            <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-12 rounded-3xl border border-gray-700 text-center">
+              <div className="bg-gradient-to-br from-green-600 to-green-700 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-8">
+                <Trophy className="w-10 h-10 text-white" />
               </div>
-
-              {/* Role */}
-              <div>
-                <label className="flex items-center gap-2 text-sm font-medium text-gray-300 mb-3">
-                  <Target className="w-4 h-4" />
-                  Role/Position *
-                </label>
-                <input
-                  type="text"
-                  name="role"
-                  value={testimonialFormData.role}
-                  onChange={handleTestimonialInputChange}
-                  required
-                  className="w-full bg-gray-700 border border-gray-600 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors duration-300"
-                  placeholder="Your role or position"
-                />
-              </div>
-
-              {/* Company */}
-              <div>
-                <label className="flex items-center gap-2 text-sm font-medium text-gray-300 mb-3">
-                  <Building className="w-4 h-4" />
-                  Company *
-                </label>
-                <input
-                  type="text"
-                  name="company"
-                  value={testimonialFormData.company}
-                  onChange={handleTestimonialInputChange}
-                  required
-                  className="w-full bg-gray-700 border border-gray-600 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors duration-300"
-                  placeholder="Your company name"
-                />
-              </div>
-
-              {/* Email */}
-              <div>
-                <label className="flex items-center gap-2 text-sm font-medium text-gray-300 mb-3">
-                  <Mail className="w-4 h-4" />
-                  Email *
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={testimonialFormData.email}
-                  onChange={handleTestimonialInputChange}
-                  required
-                  className="w-full bg-gray-700 border border-gray-600 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors duration-300"
-                  placeholder="your@email.com"
-                />
-              </div>
-
-              {/* Testimonial */}
-              <div className="md:col-span-2">
-                <label className="flex items-center gap-2 text-sm font-medium text-gray-300 mb-3">
-                  <MessageSquare className="w-4 h-4" />
-                  Your Testimonial *
-                </label>
-                <textarea
-                  name="testimonial"
-                  value={testimonialFormData.testimonial}
-                  onChange={handleTestimonialInputChange}
-                  required
-                  rows={6}
-                  className="w-full bg-gray-700 border border-gray-600 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors duration-300 resize-none"
-                  placeholder="Share your experience working with MVRK. What results did you achieve? How did it impact your business?"
-                />
-              </div>
-            </div>
-
-            {/* Submit Button */}
-            <div className="mt-12 text-center">
-              <button
-                type="submit"
-                className="group bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white px-12 py-4 rounded-full text-xl font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-red-500/25"
-              >
-                <span className="flex items-center gap-3">
-                  Submit Testimonial
-                  <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
-                </span>
-              </button>
-              <p className="text-gray-400 text-sm mt-4">
-                We'll review your testimonial and may feature it on our website
+              <h2 className="text-3xl font-bold mb-6 text-white">Thank you for sharing your experience!</h2>
+              <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+                It was a pleasure working with you. Stay tuned for our latest offers and strategic updates — we're here to help you grow.
               </p>
+              <div className="space-y-4">
+                <a 
+                  href="https://wa.me/21629707770?text=Hi%20Salim%2C%20I%E2%80%99d%20like%20help%20growing%20my%20business.%20Can%20we%20talk%3F"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-500 hover:to-green-600 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105"
+                >
+                  <Phone className="w-5 h-5" />
+                  Message on WhatsApp
+                </a>
+                <div className="pt-4">
+                  <button 
+                    onClick={resetTestimonialForm}
+                    className="text-gray-400 hover:text-white transition-colors duration-300"
+                  >
+                    Submit Another Testimonial
+                  </button>
+                </div>
+              </div>
             </div>
-          </form>
+          ) : (
+            /* Testimonial Form */
+            <form onSubmit={handleTestimonialSubmit} className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 md:p-12 rounded-3xl border border-gray-700">
+              <div className="grid md:grid-cols-2 gap-8">
+                {/* Name */}
+                <div>
+                  <label className="flex items-center gap-2 text-sm font-medium text-gray-300 mb-3">
+                    <User className="w-4 h-4" />
+                    Full Name *
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={testimonialFormData.name}
+                    onChange={handleTestimonialInputChange}
+                    required
+                    className="w-full bg-gray-700 border border-gray-600 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors duration-300"
+                    placeholder="Your full name"
+                  />
+                </div>
+
+                {/* Role */}
+                <div>
+                  <label className="flex items-center gap-2 text-sm font-medium text-gray-300 mb-3">
+                    <Target className="w-4 h-4" />
+                    Role/Position *
+                  </label>
+                  <input
+                    type="text"
+                    name="role"
+                    value={testimonialFormData.role}
+                    onChange={handleTestimonialInputChange}
+                    required
+                    className="w-full bg-gray-700 border border-gray-600 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors duration-300"
+                    placeholder="Your role or position"
+                  />
+                </div>
+
+                {/* Company */}
+                <div>
+                  <label className="flex items-center gap-2 text-sm font-medium text-gray-300 mb-3">
+                    <Building className="w-4 h-4" />
+                    Company *
+                  </label>
+                  <input
+                    type="text"
+                    name="company"
+                    value={testimonialFormData.company}
+                    onChange={handleTestimonialInputChange}
+                    required
+                    className="w-full bg-gray-700 border border-gray-600 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors duration-300"
+                    placeholder="Your company name"
+                  />
+                </div>
+
+                {/* Email */}
+                <div>
+                  <label className="flex items-center gap-2 text-sm font-medium text-gray-300 mb-3">
+                    <Mail className="w-4 h-4" />
+                    Email *
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={testimonialFormData.email}
+                    onChange={handleTestimonialInputChange}
+                    required
+                    className="w-full bg-gray-700 border border-gray-600 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors duration-300"
+                    placeholder="your@email.com"
+                  />
+                </div>
+
+                {/* Testimonial */}
+                <div className="md:col-span-2">
+                  <label className="flex items-center gap-2 text-sm font-medium text-gray-300 mb-3">
+                    <MessageSquare className="w-4 h-4" />
+                    Your Testimonial *
+                  </label>
+                  <textarea
+                    name="testimonial"
+                    value={testimonialFormData.testimonial}
+                    onChange={handleTestimonialInputChange}
+                    required
+                    rows={6}
+                    className="w-full bg-gray-700 border border-gray-600 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-colors duration-300 resize-none"
+                    placeholder="Share your experience working with MVRK. What results did you achieve? How did it impact your business?"
+                  />
+                </div>
+              </div>
+
+              {/* Submit Button */}
+              <div className="mt-12 text-center">
+                <button
+                  type="submit"
+                  disabled={isTestimonialSubmitting}
+                  className="group bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 disabled:from-gray-600 disabled:to-gray-700 text-white px-12 py-4 rounded-full text-xl font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-red-500/25 disabled:hover:scale-100 disabled:hover:shadow-none"
+                >
+                  <span className="flex items-center gap-3">
+                    {isTestimonialSubmitting ? 'Submitting...' : 'Submit Testimonial'}
+                    {!isTestimonialSubmitting && <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />}
+                  </span>
+                </button>
+                <p className="text-gray-400 text-sm mt-4">
+                  We'll review your testimonial and may feature it on our website
+                </p>
+              </div>
+            </form>
+          )}
         </div>
       </div>
     );

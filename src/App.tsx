@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Instagram, Phone, ArrowRight, Target, TrendingUp, Zap, ChevronDown, User, Building, Mail, MessageSquare, Globe, ShoppingBag, Users, AlertCircle, Trophy, FileText, TrendingUp as TrendingUpRight, X, Sparkles } from 'lucide-react';
+import { Instagram, Phone, ArrowRight, Target, TrendingUp, Zap, ChevronDown, User, Building, Mail, MessageSquare, Globe, ShoppingBag, Users, AlertCircle, Trophy, FileText, TrendingUp as TrendingUpRight, X, Sparkles, DollarSign, Bot, Rocket } from 'lucide-react';
 import { AuthProvider, useAuth } from './components/AuthContext';
 import OnboardingFlow from './components/OnboardingFlow';
 import LoginForm from './components/LoginForm';
@@ -890,54 +890,54 @@ function MainApp() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {/* Service 1 - Marketing Strategy */}
+            {/* Service 1 - Marketing That Sells */}
             <div className="group bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700 hover:border-gray-600 transition-all duration-500 hover:transform hover:scale-105">
               <div className="bg-gradient-to-br from-red-600 to-red-700 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:shadow-lg group-hover:shadow-red-500/25 transition-all duration-300">
-                <Target className="w-8 h-8 text-white" />
+                <DollarSign className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-white">Marketing Strategy</h3>
-              <ul className="text-gray-300 leading-relaxed space-y-3">
-                <li>• Focus on strategy and positioning</li>
-                <li>• Define the Marketing ICP (the audience your brand content should attract)</li>
-                <li>• Content direction + messaging clarity</li>
-                <li>• Manage all production: photoshoots, graphic design, video editing</li>
-                <li>• Design and launch complete marketing campaigns</li>
-              </ul>
-              <p className="text-sm text-gray-400 mt-4 italic">
-                Marketing ICP = people to attract and nurture before the sale
+              <h3 className="text-2xl font-bold mb-4 text-white">Marketing That Sells</h3>
+              <p className="text-gray-300 mb-6 leading-relaxed">
+                We don't just make you look good – we make you money.
               </p>
+              <ul className="text-gray-300 leading-relaxed space-y-3">
+                <li>• Identify exactly who to target</li>
+                <li>• Craft clear, powerful messages</li>
+                <li>• Create scroll-stopping content (photos, videos, graphics)</li>
+                <li>• Launch campaigns that drive results</li>
+              </ul>
             </div>
 
-            {/* Service 2 - Sales Strategy */}
+            {/* Service 2 - Sales Systems That Close */}
             <div className="group bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700 hover:border-gray-600 transition-all duration-500 hover:transform hover:scale-105">
               <div className="bg-gradient-to-br from-red-600 to-red-700 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:shadow-lg group-hover:shadow-red-500/25 transition-all duration-300">
-                <TrendingUp className="w-8 h-8 text-white" />
+                <Bot className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-white">Sales Strategy</h3>
-              <ul className="text-gray-300 leading-relaxed space-y-3">
-                <li>• Define the Sales ICP (ready-to-buy segment)</li>
-                <li>• Build full CRM & sales systems using tools like HubSpot</li>
-                <li>• Set up automated chatbots to increase closing chances</li>
-                <li>• Design sales campaigns and outreach sequences</li>
-                <li>• Optimize each touchpoint to turn leads into revenue</li>
-              </ul>
-              <p className="text-sm text-gray-400 mt-4 italic">
-                Sales ICP = qualified buyers actively making decisions
+              <h3 className="text-2xl font-bold mb-4 text-white">Sales Systems That Close</h3>
+              <p className="text-gray-300 mb-6 leading-relaxed">
+                Turn leads into loyal customers with ease.
               </p>
+              <ul className="text-gray-300 leading-relaxed space-y-3">
+                <li>• Define your ready-to-buy audience</li>
+                <li>• Build automated follow-up and CRM systems</li>
+                <li>• Use AI chatbots to handle inquiries 24/7</li>
+                <li>• Design sales flows that maximize conversions</li>
+              </ul>
             </div>
 
             {/* Service 3 - Growth Acceleration */}
             <div className="group bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700 hover:border-gray-600 transition-all duration-500 hover:transform hover:scale-105">
               <div className="bg-gradient-to-br from-red-600 to-red-700 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:shadow-lg group-hover:shadow-red-500/25 transition-all duration-300">
-                <Zap className="w-8 h-8 text-white" />
+                <Rocket className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-2xl font-bold mb-4 text-white">Growth Acceleration</h3>
+              <p className="text-gray-300 mb-6 leading-relaxed">
+                Remove bottlenecks and scale faster.
+              </p>
               <ul className="text-gray-300 leading-relaxed space-y-3">
-                <li>• Consulting-style service: 1-on-1 strategic clarity</li>
-                <li>• Identify and resolve growth bottlenecks</li>
-                <li>• Plan scale pathways and streamline decision-making</li>
-                <li>• Available as a free trial: strategic insight delivered in 24 hours</li>
-                <li>• Acts as your entry-point offer to build trust</li>
+                <li>• Get instant strategic clarity (free growth audit in 24h)</li>
+                <li>• Fix what's slowing you down</li>
+                <li>• Create a step-by-step scale plan</li>
+                <li>• Gain expert support to implement and grow</li>
               </ul>
             </div>
           </div>

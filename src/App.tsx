@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Instagram, Phone, ArrowRight, Target, TrendingUp, Zap, ChevronDown, User, Building, Mail, MessageSquare, Globe, ShoppingBag, Users, AlertCircle, Trophy, FileText, TrendingUp as TrendingUpRight, X, Sparkles } from 'lucide-react';
+import { Instagram, Phone, ArrowRight, Target, TrendingUp, Zap, ChevronDown, User, Building, Mail, MessageSquare, Globe, ShoppingBag, Users, AlertCircle, Trophy, FileText, TrendingUp as TrendingUpRight, X } from 'lucide-react';
 import { AuthProvider, useAuth } from './components/AuthContext';
 import OnboardingFlow from './components/OnboardingFlow';
 import LoginForm from './components/LoginForm';
@@ -1015,8 +1015,7 @@ function MainApp() {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-gray-900 to-black"></div>
         
         <div className="relative z-10 max-w-4xl mx-auto text-center px-6">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent flex items-center justify-center gap-3">
-            <Sparkles className="w-8 h-8 text-white flex-shrink-0" />
+          <h2 className="text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">
             Get a Free Growth Plan — Delivered in 24 Hours
           </h2>
           <p className="text-xl text-gray-300 mb-4 leading-relaxed">
@@ -1042,7 +1041,7 @@ function MainApp() {
             </span>
           </button>
         </div>
-      </section>
+      </div>
 
       {/* Footer */}
       <footer className="py-12 border-t border-gray-800">

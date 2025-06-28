@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Instagram, Phone, ArrowRight, Target, TrendingUp, Zap, ChevronDown, User, Building, Mail, MessageSquare, Globe, ShoppingBag, Users, AlertCircle, Trophy, FileText, TrendingUp as TrendingUpRight, X } from 'lucide-react';
+import { AuthProvider, useAuth } from './components/AuthContext';
+import OnboardingFlow from './components/OnboardingFlow';
+import LoginForm from './components/LoginForm';
+import UserProfile from './components/UserProfile';
 
-function App() {
+function MainApp() {
+  const { user, isAuthenticated } = useAuth();
   const [scrollY, setScrollY] = useState(0);
   const [showForm, setShowForm] = useState(false);
   const [showTestimonialForm, setShowTestimonialForm] = useState(false);
+  const [showOnboarding, setShowOnboarding] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -272,6 +280,32 @@ function App() {
       <path d="M3 16L5 14" strokeWidth="1.5" opacity="0.4" />
     </svg>
   );
+
+  // Show onboarding flow for new users
+  if (showOnboarding) {
+    return (
+      <OnboardingFlow 
+        onComplete={() => {
+          setShowOnboarding(false);
+        }} 
+      />
+    );
+  }
+
+  // Show login form
+  if (showLogin) {
+    return (
+      <LoginForm 
+        onSwitchToRegister={() => {
+          setShowLogin(false);
+          setShowOnboarding(true);
+        }}
+        onLoginSuccess={() => {
+          setShowLogin(false);
+        }}
+      />
+    );
+  }
 
   // Testimonial Form Page
   if (showTestimonialForm) {
@@ -760,8 +794,57 @@ function App() {
 
   return (
     <div className="bg-black text-white overflow-x-hidden">
+      {/* Navigation Bar */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            {/* Logo */}
+            <img 
+              src="/582b3ba5-44a7-495b-99db-d934013589cf-removebg-preview.png" 
+              alt="MVRK Logo" 
+              className="h-10 filter drop-shadow-lg"
+            />
+            
+            {/* User Actions */}
+            <div className="flex items-center gap-4">
+              {isAuthenticated && user ? (
+                <button
+                  onClick={() => setShowProfile(true)}
+                  className="flex items-center gap-3 bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-600 hover:to-gray-700 text-white px-4 py-2 rounded-full font-medium transition-all duration-300 transform hover:scale-105"
+                >
+                  <div className="bg-gradient-to-br from-red-600 to-red-700 w-8 h-8 rounded-full flex items-center justify-center">
+                    <User className="w-4 h-4 text-white" />
+                  </div>
+                  <span className="hidden sm:block">{user.firstName}</span>
+                </button>
+              ) : (
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={() => setShowLogin(true)}
+                    className="text-gray-300 hover:text-white font-medium transition-colors duration-300"
+                  >
+                    Sign In
+                  </button>
+                  <button
+                    onClick={() => setShowOnboarding(true)}
+                    className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white px-6 py-2 rounded-full font-medium transition-all duration-300 transform hover:scale-105"
+                  >
+                    Get Started
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* User Profile Modal */}
+      {showProfile && (
+        <UserProfile onClose={() => setShowProfile(false)} />
+      )}
+
       {/* Hero Section */}
-      <section className="min-h-screen relative flex items-center justify-center">
+      <section className="min-h-screen relative flex items-center justify-center pt-20">
         {/* Background with gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800"></div>
         
@@ -772,15 +855,6 @@ function App() {
         </div>
 
         <div className="relative z-10 text-center px-6 max-w-6xl mx-auto">
-          {/* Logo */}
-          <div className="mb-12 transform hover:scale-105 transition-transform duration-500">
-            <img 
-              src="/582b3ba5-44a7-495b-99db-d934013589cf-removebg-preview.png" 
-              alt="MVRK Logo" 
-              className="h-24 mx-auto filter drop-shadow-2xl"
-            />
-          </div>
-
           {/* Main Headline */}
           <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
             <span className="bg-gradient-to-r from-gray-200 via-white to-gray-300 bg-clip-text text-transparent">
@@ -993,6 +1067,14 @@ function App() {
         </div>
       </footer>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <AuthProvider>
+      <MainApp />
+    </AuthProvider>
   );
 }
 

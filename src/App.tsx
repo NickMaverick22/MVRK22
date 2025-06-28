@@ -1041,7 +1041,7 @@ function MainApp() {
             </span>
           </button>
         </div>
-      </div>
+      </section>
 
       {/* Footer */}
       <footer className="py-12 border-t border-gray-800">

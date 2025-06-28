@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Instagram, Phone, ArrowRight, Target, TrendingUp, Zap, ChevronDown, User, Building, Mail, MessageSquare, Globe, ShoppingBag, Users, AlertCircle, Trophy, FileText, TrendingUp as TrendingUpRight, X } from 'lucide-react';
+import { Instagram, Phone, ArrowRight, Target, TrendingUp, Zap, ChevronDown, User, Building, Mail, MessageSquare, Globe, ShoppingBag, Users, AlertCircle, Trophy, FileText, TrendingUp as TrendingUpRight, X, Sparkles } from 'lucide-react';
 import { AuthProvider, useAuth } from './components/AuthContext';
 import OnboardingFlow from './components/OnboardingFlow';
 import LoginForm from './components/LoginForm';
@@ -257,27 +257,6 @@ function MainApp() {
       <path d="M75 85 L75 20 L85 20 L85 85 Z" />
       <path d="M20 60 L40 45 L60 30 L75 20 L85 15" stroke="currentColor" strokeWidth="3" fill="none" />
       <path d="M75 25 L85 15 L85 25 Z" />
-    </svg>
-  );
-
-  // Modern Performance Arrow Icon - sleek and minimal
-  const PerformanceArrowIcon = ({ className }: { className?: string }) => (
-    <svg 
-      viewBox="0 0 24 24" 
-      className={className}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      {/* Sleek upward arrow with performance lines */}
-      <path d="M7 17L17 7" />
-      <path d="M17 7H11" />
-      <path d="M17 7V13" />
-      {/* Performance indicator lines */}
-      <path d="M3 12L7 8" strokeWidth="1.5" opacity="0.6" />
-      <path d="M3 16L5 14" strokeWidth="1.5" opacity="0.4" />
     </svg>
   );
 
@@ -798,41 +777,48 @@ function MainApp() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            {/* Logo */}
-            <img 
-              src="/582b3ba5-44a7-495b-99db-d934013589cf-removebg-preview.png" 
-              alt="MVRK Logo" 
-              className="h-10 filter drop-shadow-lg"
-            />
+            {/* Left spacer for balance */}
+            <div className="flex-1"></div>
+            
+            {/* Centered Logo */}
+            <div className="flex-1 flex justify-center">
+              <img 
+                src="/582b3ba5-44a7-495b-99db-d934013589cf-removebg-preview.png" 
+                alt="MVRK Logo" 
+                className="h-14 filter drop-shadow-lg"
+              />
+            </div>
             
             {/* User Actions */}
-            <div className="flex items-center gap-4">
-              {isAuthenticated && user ? (
-                <button
-                  onClick={() => setShowProfile(true)}
-                  className="flex items-center gap-3 bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-600 hover:to-gray-700 text-white px-4 py-2 rounded-full font-medium transition-all duration-300 transform hover:scale-105"
-                >
-                  <div className="bg-gradient-to-br from-red-600 to-red-700 w-8 h-8 rounded-full flex items-center justify-center">
-                    <User className="w-4 h-4 text-white" />
+            <div className="flex-1 flex justify-end">
+              <div className="flex items-center gap-4">
+                {isAuthenticated && user ? (
+                  <button
+                    onClick={() => setShowProfile(true)}
+                    className="flex items-center gap-3 bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-600 hover:to-gray-700 text-white px-4 py-2 rounded-full font-medium transition-all duration-300 transform hover:scale-105"
+                  >
+                    <div className="bg-gradient-to-br from-red-600 to-red-700 w-8 h-8 rounded-full flex items-center justify-center">
+                      <User className="w-4 h-4 text-white" />
+                    </div>
+                    <span className="hidden sm:block">{user.firstName}</span>
+                  </button>
+                ) : (
+                  <div className="flex items-center gap-3">
+                    <button
+                      onClick={() => setShowLogin(true)}
+                      className="text-gray-300 hover:text-white font-medium transition-colors duration-300"
+                    >
+                      Sign In
+                    </button>
+                    <button
+                      onClick={() => setShowOnboarding(true)}
+                      className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white px-6 py-2 rounded-full font-medium transition-all duration-300 transform hover:scale-105"
+                    >
+                      Get Started
+                    </button>
                   </div>
-                  <span className="hidden sm:block">{user.firstName}</span>
-                </button>
-              ) : (
-                <div className="flex items-center gap-3">
-                  <button
-                    onClick={() => setShowLogin(true)}
-                    className="text-gray-300 hover:text-white font-medium transition-colors duration-300"
-                  >
-                    Sign In
-                  </button>
-                  <button
-                    onClick={() => setShowOnboarding(true)}
-                    className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white px-6 py-2 rounded-full font-medium transition-all duration-300 transform hover:scale-105"
-                  >
-                    Get Started
-                  </button>
-                </div>
-              )}
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -1030,7 +1016,7 @@ function MainApp() {
         
         <div className="relative z-10 max-w-4xl mx-auto text-center px-6">
           <h2 className="text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent flex items-center justify-center gap-3">
-            <PerformanceArrowIcon className="w-7 h-7 text-white flex-shrink-0" />
+            <Sparkles className="w-8 h-8 text-white flex-shrink-0" />
             Get a Free Growth Plan — Delivered in 24 Hours
           </h2>
           <p className="text-xl text-gray-300 mb-4 leading-relaxed">

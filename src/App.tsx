@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Instagram, Phone, ArrowRight, Target, TrendingUp, Zap, ChevronDown, User, Building, Mail, MessageSquare, Globe, ShoppingBag, Users, AlertCircle, Trophy, FileText, TrendingUp as TrendingUpRight, X, Sparkles, DollarSign, Bot, Rocket } from 'lucide-react';
+import { Instagram, Phone, ArrowRight, Target, TrendingUp, Zap, ChevronDown, User, Building, Mail, MessageSquare, Globe, ShoppingBag, Users, AlertCircle, Trophy, FileText, TrendingUp as TrendingUpRight, X, Sparkles } from 'lucide-react';
 import { AuthProvider, useAuth } from './components/AuthContext';
 import OnboardingFlow from './components/OnboardingFlow';
 import LoginForm from './components/LoginForm';
@@ -893,7 +893,7 @@ function MainApp() {
             {/* Service 1 - Marketing That Sells */}
             <div className="group bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700 hover:border-gray-600 transition-all duration-500 hover:transform hover:scale-105">
               <div className="bg-gradient-to-br from-red-600 to-red-700 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:shadow-lg group-hover:shadow-red-500/25 transition-all duration-300">
-                <DollarSign className="w-8 h-8 text-white" />
+                <Target className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-2xl font-bold mb-4 text-white">Marketing That Sells</h3>
               <p className="text-gray-300 mb-6 leading-relaxed">
@@ -910,7 +910,7 @@ function MainApp() {
             {/* Service 2 - Sales Systems That Close */}
             <div className="group bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700 hover:border-gray-600 transition-all duration-500 hover:transform hover:scale-105">
               <div className="bg-gradient-to-br from-red-600 to-red-700 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:shadow-lg group-hover:shadow-red-500/25 transition-all duration-300">
-                <Bot className="w-8 h-8 text-white" />
+                <TrendingUp className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-2xl font-bold mb-4 text-white">Sales Systems That Close</h3>
               <p className="text-gray-300 mb-6 leading-relaxed">
@@ -927,7 +927,7 @@ function MainApp() {
             {/* Service 3 - Growth Acceleration */}
             <div className="group bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl border border-gray-700 hover:border-gray-600 transition-all duration-500 hover:transform hover:scale-105">
               <div className="bg-gradient-to-br from-red-600 to-red-700 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:shadow-lg group-hover:shadow-red-500/25 transition-all duration-300">
-                <Rocket className="w-8 h-8 text-white" />
+                <Zap className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-2xl font-bold mb-4 text-white">Growth Acceleration</h3>
               <p className="text-gray-300 mb-6 leading-relaxed">

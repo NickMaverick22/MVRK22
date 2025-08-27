@@ -155,11 +155,7 @@ function MainApp() {
         <div className="relative z-10 text-center px-6 max-w-6xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
             <span className="bg-gradient-to-r from-gray-200 via-white to-gray-300 bg-clip-text text-transparent">
-              We Scale E-Commerce Brands
-            </span>
-            <br />
-            <span className="bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
-              Into 6 & 7 Figures.
+              We Scale E-Commerce Brands Into 6 & 7 Figures.
             </span>
           </h1>
 
@@ -192,19 +188,19 @@ function MainApp() {
             <div className="space-y-8">
               <div className="flex items-start gap-4">
                 <div className="bg-gradient-to-br from-red-600 to-red-700 w-3 h-3 rounded-full mt-2 flex-shrink-0"></div>
-                <p className="text-xl text-gray-300 leading-relaxed">
+                <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
                   I scale e-commerce brands with one focus: profitable growth.
                 </p>
               </div>
               <div className="flex items-start gap-4">
                 <div className="bg-gradient-to-br from-red-600 to-red-700 w-3 h-3 rounded-full mt-2 flex-shrink-0"></div>
-                <p className="text-xl text-gray-300 leading-relaxed">
+                <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
                   I only work with brands I believe in — no exceptions.
                 </p>
               </div>
               <div className="flex items-start gap-4">
                 <div className="bg-gradient-to-br from-red-600 to-red-700 w-3 h-3 rounded-full mt-2 flex-shrink-0"></div>
-                <p className="text-xl text-gray-300 leading-relaxed">
+                <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
                   Growth should be predictable, profitable, and performance-driven.
                 </p>
               </div>
@@ -243,7 +239,7 @@ function MainApp() {
                 <Target className="w-8 h-8 text-red-500" />
               </div>
               <h3 className="text-2xl font-bold mb-4 text-white">Audit & Research</h3>
-              <p className="text-gray-300 leading-relaxed">
+              <p className="text-sm md:text-base text-gray-300 leading-relaxed">
                 Spot opportunities in your store & ads.
               </p>
             </div>
@@ -256,7 +252,7 @@ function MainApp() {
                 <Zap className="w-8 h-8 text-red-500" />
               </div>
               <h3 className="text-2xl font-bold mb-4 text-white">Setup & Optimization</h3>
-              <p className="text-gray-300 leading-relaxed">
+              <p className="text-sm md:text-base text-gray-300 leading-relaxed">
                 Build audiences, creatives, tracking.
               </p>
             </div>
@@ -269,7 +265,7 @@ function MainApp() {
                 <TrendingUp className="w-8 h-8 text-red-500" />
               </div>
               <h3 className="text-2xl font-bold mb-4 text-white">Scaling & Reporting</h3>
-              <p className="text-gray-300 leading-relaxed">
+              <p className="text-sm md:text-base text-gray-300 leading-relaxed">
                 Scale budgets profitably with live dashboards.
               </p>
             </div>
@@ -289,19 +285,19 @@ function MainApp() {
           <div className="space-y-8 mb-16">
             <div className="flex items-start gap-4 justify-center">
               <div className="bg-gradient-to-br from-red-600 to-red-700 w-3 h-3 rounded-full mt-2 flex-shrink-0"></div>
-              <p className="text-xl text-gray-300 leading-relaxed max-w-2xl">
+              <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-2xl text-center">
                 No flat retainers. No empty promises.
               </p>
             </div>
             <div className="flex items-start gap-4 justify-center">
               <div className="bg-gradient-to-br from-red-600 to-red-700 w-3 h-3 rounded-full mt-2 flex-shrink-0"></div>
-              <p className="text-xl text-gray-300 leading-relaxed max-w-2xl">
+              <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-2xl text-center">
                 Our success is tied directly to your results.
               </p>
             </div>
             <div className="flex items-start gap-4 justify-center">
               <div className="bg-gradient-to-br from-red-600 to-red-700 w-3 h-3 rounded-full mt-2 flex-shrink-0"></div>
-              <p className="text-xl text-gray-300 leading-relaxed max-w-2xl">
+              <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-2xl text-center">
                 If you don't grow profitably, we don't get paid.
               </p>
             </div>
@@ -332,28 +328,28 @@ function MainApp() {
             <div className="space-y-6 mb-12">
               <div className="flex items-center gap-4">
                 <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />
-                <p className="text-xl text-gray-300">Shopify store</p>
+                <p className="text-lg md:text-xl text-gray-300">Shopify store</p>
               </div>
               <div className="flex items-center gap-4">
                 <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />
-                <p className="text-xl text-gray-300">£10K+ proven sales</p>
+                <p className="text-lg md:text-xl text-gray-300">£10K+ proven sales</p>
               </div>
               <div className="flex items-center gap-4">
                 <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />
-                <p className="text-xl text-gray-300">Healthy margins</p>
+                <p className="text-lg md:text-xl text-gray-300">Healthy margins</p>
               </div>
               <div className="flex items-center gap-4">
                 <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />
-                <p className="text-xl text-gray-300">Consistent stock levels</p>
+                <p className="text-lg md:text-xl text-gray-300">Consistent stock levels</p>
               </div>
               <div className="flex items-center gap-4">
                 <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />
-                <p className="text-xl text-gray-300">Cashflow to increase ad spend</p>
+                <p className="text-lg md:text-xl text-gray-300">Cashflow to increase ad spend</p>
               </div>
             </div>
             
             <div className="text-center">
-              <p className="text-2xl text-white font-semibold">
+              <p className="text-xl md:text-2xl text-white font-semibold">
                 If you meet these conditions, we can scale you.
               </p>
             </div>
@@ -378,7 +374,7 @@ function MainApp() {
                 <BarChart3 className="w-12 h-12 text-gray-500" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-white">E-commerce Brand</h3>
-              <p className="text-gray-300 leading-relaxed">
+              <p className="text-sm md:text-base text-gray-300 leading-relaxed">
                 Scaled a brand from £10K → £50K ad spend in 90 days (3.2x ROAS).
               </p>
             </div>
@@ -388,7 +384,7 @@ function MainApp() {
                 <TrendingUp className="w-12 h-12 text-gray-500" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-white">Fashion Store</h3>
-              <p className="text-gray-300 leading-relaxed">
+              <p className="text-sm md:text-base text-gray-300 leading-relaxed">
                 Helped a fashion store grow revenue +187% YoY.
               </p>
             </div>
@@ -398,14 +394,14 @@ function MainApp() {
                 <Award className="w-12 h-12 text-gray-500" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-white">Supplement Brand</h3>
-              <p className="text-gray-300 leading-relaxed">
+              <p className="text-sm md:text-base text-gray-300 leading-relaxed">
                 Took a supplement brand to £100K+ profitable monthly revenue.
               </p>
             </div>
           </div>
 
           <div className="text-center">
-            <p className="text-xl text-gray-300 italic">
+            <p className="text-lg md:text-xl text-gray-300 italic">
               These results represent the outcomes we deliver. Yours could be next.
             </p>
           </div>
@@ -488,7 +484,7 @@ function MainApp() {
             <h2 className="text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-gray-200 to-white bg-clip-text text-transparent">
               Ready to Scale Your Brand?
             </h2>
-            <p className="text-xl text-gray-300 leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-4xl mx-auto">
               We only take on a limited number of clients each quarter. Apply below — if you qualify, we'll reach out to schedule your first call.
             </p>
           </div>

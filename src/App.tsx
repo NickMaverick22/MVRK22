@@ -209,8 +209,8 @@ function MainApp() {
             <div className="flex justify-center">
               <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-3xl border border-gray-700">
                 <img 
-                  src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=500&h=600&fit=crop"
-                  alt="Salim Soussi presenting at a brand scaling workshop"
+                  src="/WhatsApp Image 2025-08-26 at 11.50.48.jpeg"
+                  alt="Salim Soussi, Brand Scaling Expert, presenting at a workshop"
                   className="w-full h-96 object-cover rounded-2xl"
                 />
               </div>
